@@ -2,7 +2,7 @@
 //When the user clicks the 'Add Journal Entries' button, use JavaScript prompts for entering reflections consisting of the following items:
 //===================User prompt entries=========================//
 
-
+function workingJournalEntry(){
 let allUserResponses = [];
 let journalEntryObjectArr = [];
 // Creation Date - Prompt for a date
@@ -69,12 +69,15 @@ if (userPostsReflection === true)
 newObject(userJournalDate, userConfidenceLevel, userWriteJournalEntry); // calling our Newobject function to store user input data
 
 }
-//=======POST REFLECTION END===============/
+else(
+    
+)
+                              //=======POST REFLECTION END===============/
 
 console.log(allUserResponses); // the user response are inside of the array! 
 
 //what next?
-//================== Object Literals ===============//////
+                          //================== Object Literals ===============//////
 
 //Define a JavaScript object literal that will represent a journal entry
 
@@ -92,7 +95,11 @@ function newObject (creationDate, confidenceLevel, journalEntry) // creates a ne
 
 console.log(journalEntryObjectArr); // check the values of our object!
 
-//===================WORKING WITH DOM==============================//
+                       //===========END OF OBJECT LITERALS=================================//
+
+
+
+                        //===================WORKING WITH DOM==============================//
 // Add an unordered list (ul) to the DOM
 let getDivElement = document.getElementById('journal-entry'); //ul is now inside of the DOM
 let createUlElement = document.createElement('ul');
@@ -114,16 +121,30 @@ let journalEntryContent = document.createTextNode(`${userWriteJournalEntry}`); /
 listElement3.appendChild(journalEntryContent); //expected output : List shows up on browser. ERROR listelement.textcontent is not a function.
 getDivElement.appendChild(listElement3);
 
+                    //===================END OF WORKING WITH DOM==========================//
+
+
+}
 
 
 
 
-// createDateListElement.append(journalEntryObjectArr[0]); //code a lil test a lil
+//================= create a button/ event listener =======================//
 
-// Add confidence entry as a list item (li) element to the unordered list
-// let createConfidenceElement = document.createElement('li'); //create an element to store the confidence level
-// Add entry text as a list item (li) element to the unordered list
-// let createTextElement = document.createElement('li'); // create an element to store the user journal data
+// Create the button in html
+//put an id to your button and link it back to Javascript 
+
+document.getElementById("btn-entry").addEventListener("click", workingJournalEntry);
+
+
+
+
+// Use a function that you implement to iterate the list of entries in the array,
+
+// and using template literals, render all of the entries in the console
+//  (Note: Log each property of each entry item. NOT full array or entry object)
+// Allow the user to continue to submit entries as long as they choose until they enter 'quit' 
+// (optionally add support to stop entering entries if they click cancel in prompt dialog)
 
 
 
