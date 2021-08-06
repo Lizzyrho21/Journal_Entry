@@ -1,21 +1,29 @@
 
 //When the user clicks the 'Add Journal Entries' button, use JavaScript prompts for entering reflections consisting of the following items:
 //===================User prompt entries=========================//
+
+
 let allUserResponses = [];
+let journalEntryObjectArr = [];
 // Creation Date - Prompt for a date
+
+
+
 let userJournalDate = prompt("Enter today's date");
+allUserResponses.push(userJournalDate);
 console.log(userJournalDate);
 
-// Confidence Level - Prompt the user to specify Low, Medium, and High confidence level
+//===========================START OF CONFIDENCE LEVEL=============================//
+
 let userConfidenceLevel = false; // a variable is declared and set to false. we dont know thier confidence level yet!
 while(userConfidenceLevel === false) // while loop is created to force them to choose the answers we write
 {
-    let response = prompt("How would you rate your confidence? "  + "High, Medium, or Low?");
+    var response = prompt("How would you rate your confidence? "  + "High, Medium, or Low?");
     if(response.toUpperCase() === 'High' || response.toUpperCase() === 'HIGH') // We use the .toUpperCase() to accept all case answers
     {   userConfidenceLevel === true;
         alert("Great! Let's move on");
         allUserResponses.push(response); // pushing this user input input into the array
-        console.log(response);
+        // console.log(response);
         break; // alert to let them know it's logged
         
     }
@@ -24,7 +32,7 @@ while(userConfidenceLevel === false) // while loop is created to force them to c
         userConfidenceLevel === true;
         alert("Ahh okay");
         allUserResponses.push(response); // pushing user input into the array
-        console.log(response);
+        // console.log(response);
         break;
        
     }
@@ -33,7 +41,7 @@ while(userConfidenceLevel === false) // while loop is created to force them to c
         userConfidenceLevel === true;
         alert("Sorry to hear that!");
         allUserResponses.push(response); //pushing this user input into the array 
-        console.log(response);
+        // console.log(response);
         break;
     }
     else {
@@ -43,58 +51,80 @@ while(userConfidenceLevel === false) // while loop is created to force them to c
 
 
 }
-
-
-
-//  (your implementation should handle any entry regardless of upper or lowercase 
-//     and any entry that does not match one of the 3 options should be rejected with an error message
-//      alert and the user should be prompted to re-enter their confidence level value)
-// We MUST use a while loop here.
-
-// We have created all of the journal entries!
-
-
-
-// Describe your confidence level in your skills at the time of posting
-
-let userDescribesConfidence = prompt("Can you describe your confidence rating?");
-allUserResponses.push(userDescribesConfidence); // pushing this into the array
-console.log(userDescribesConfidence); // console.log user response and it is saved in the console
-
+//==========================END OF CONFIDENCE LEVEL==============================//
 
 // Journal Entry - Prompt the user for the text for your reflection
 let userWriteJournalEntry = prompt("Please write your jounal entry"); // console.log user response and it is saved in the log.
 allUserResponses.push(userWriteJournalEntry);
-console.log(userWriteJournalEntry);
+
+// console.log(userWriteJournalEntry);
 
 
 
 // Post Reflection - Use a confirm dialog box to confirm the post/record your journal entry (if the user selects OK,)
-//TODO: Start the while loop over if they press CANCEL
+//TODO NOT DONE: Start the while loop over if they press CANCEL
 let userPostsReflection = confirm("Are you ready to post this entry?");
-// allUserResponses.push(userPostsReflection);
+if (userPostsReflection === true)
+{
+newObject(userJournalDate, userConfidenceLevel, userWriteJournalEntry); // calling our Newobject function to store user input data
 
-console.log(userPostsReflection);
+}
+//=======POST REFLECTION END===============/
 
- 
+console.log(allUserResponses); // the user response are inside of the array! 
 
+//what next?
+//================== Object Literals ===============//////
 
-// TODO: Add all of the user responses to the array! 
-
-console.log(allUserResponses); //DONE
-
-//==================== OBJECT LITERALS ==========================//
-
-// Define a JavaScript object literal that will represent a journal entry
-
+//Define a JavaScript object literal that will represent a journal entry
 
 
+function newObject (creationDate, confidenceLevel, journalEntry) // creates a new journal entry object with the three parameters
+{
+    let journalObject = {
+        creationDateProperty: creationDate,
+        confidenceLevelProperty: confidenceLevel, //USE THE PARAMETERS AS VALUES OF THE PROPERTIES
+        journalEntryProperty:journalEntry 
+    }
+    return journalEntryObjectArr.push(journalObject); //pushing the object into the Array and returning them as output
+
+}
+
+console.log(journalEntryObjectArr); // check the values of our object!
+
+//===================WORKING WITH DOM==============================//
+// Add an unordered list (ul) to the DOM
+let getDivElement = document.getElementById('journal-entry'); //ul is now inside of the DOM
+let createUlElement = document.createElement('ul');
+getDivElement.appendChild(createUlElement); // will this add the ul?. The ul is added.
+
+// Add create date as a list item (li) element to the unordered list
+let listElement = document.createElement('li'); // create an element to store the date
+let dateContent = document.createTextNode(`${userJournalDate}`); // Whatever we enter shows up in our browser!! GOOD JOB LIZZY!!
+listElement.appendChild(dateContent); //expected output : List shows up on browser. ERROR listelement.textcontent is not a function.
+getDivElement.appendChild(listElement);// list shows up! get the data entry inside of the li item
+
+let listElement2 = document.createElement('li'); // create an element to store the date
+let confidenceContent = document.createTextNode(`${response}`); //TODO: Get 'high medium or low' to show up in browser <= Completed. Had to put var in instead
+listElement2.appendChild(confidenceContent); //expected output : List shows up on browser. ERROR listelement.textcontent is not a function.
+getDivElement.appendChild(listElement2);
+
+let listElement3 = document.createElement('li'); // create an element to store the date
+let journalEntryContent = document.createTextNode(`${userWriteJournalEntry}`); // Whatever we enter shows up in our browser!! GOOD JOB LIZZY!!
+listElement3.appendChild(journalEntryContent); //expected output : List shows up on browser. ERROR listelement.textcontent is not a function.
+getDivElement.appendChild(listElement3);
 
 
-// Implement JavaScript to handle the values entered for the journal entry
-// When a journal entry is submitted/confirmed, create a new journalEntry object and add it to a journalEntries array
-// After each submission
-// Add the entry to the journalEntries array
 
- 
+
+
+// createDateListElement.append(journalEntryObjectArr[0]); //code a lil test a lil
+
+// Add confidence entry as a list item (li) element to the unordered list
+// let createConfidenceElement = document.createElement('li'); //create an element to store the confidence level
+// Add entry text as a list item (li) element to the unordered list
+// let createTextElement = document.createElement('li'); // create an element to store the user journal data
+
+
+
 
