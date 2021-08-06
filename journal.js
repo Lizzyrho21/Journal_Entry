@@ -57,6 +57,7 @@ while(userConfidenceLevel === false) // while loop is created to force them to c
 let userWriteJournalEntry = prompt("Please write your jounal entry"); // console.log user response and it is saved in the log.
 allUserResponses.push(userWriteJournalEntry);
 
+
 // console.log(userWriteJournalEntry);
 
 
@@ -69,9 +70,7 @@ if (userPostsReflection === true)
 newObject(userJournalDate, userConfidenceLevel, userWriteJournalEntry); // calling our Newobject function to store user input data
 
 }
-else(
-    
-)
+
                               //=======POST REFLECTION END===============/
 
 console.log(allUserResponses); // the user response are inside of the array! 
@@ -137,10 +136,14 @@ getDivElement.appendChild(listElement3);
 document.getElementById("btn-entry").addEventListener("click", workingJournalEntry);
 
 
+//===================End of button/ event listener=====================//
 
+
+//==========TODO:===========//
 
 // Use a function that you implement to iterate the list of entries in the array,
-
+// a function is created
+// another array? total entries 
 // and using template literals, render all of the entries in the console
 //  (Note: Log each property of each entry item. NOT full array or entry object)
 // Allow the user to continue to submit entries as long as they choose until they enter 'quit' 
