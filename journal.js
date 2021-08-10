@@ -130,6 +130,8 @@ function workingJournalEntry() {
 
   //===================END OF WORKING WITH DOM==========================//
 
+  //======== How can we refactor this code?=========//
+  
 
 
 
