@@ -1,9 +1,11 @@
 //When the user clicks the 'Add Journal Entries' button, use JavaScript prompts for entering reflections consisting of the following items:
 //===================User prompt entries=========================//
+let allUserResponses = []; // empty array that will hold all the user responses
+let journalEntryObjectArr = []; // empty array that will hold all of the object literal values
 // Below is a function that calls the working code
 function workingJournalEntry() {
-  let allUserResponses = []; // empty array that will hold all the user responses
-  let journalEntryObjectArr = []; // empty array that will hold all of the object literal values
+  
+ 
   
   // Creation Date - Prompt for a date
   let userJournalDate = prompt("Enter today's date (or enter 'q' to quit)");
@@ -77,6 +79,8 @@ function workingJournalEntry() {
   let userPostsReflection = confirm("Are you ready to post this entry? type 'q' to cancel.");
   if (userPostsReflection === true) {
     newObject(userJournalDate, userConfidenceLevel, userWriteJournalEntry); // calling our Newobject function to store user input data
+    updateLocalStorage(); 
+    
   }
   else if (userPostsReflection.toUpperCase() === 'Q')
   {
@@ -162,8 +166,42 @@ userResponseForLoop();
 document
   .getElementById("btn-entry")
   .addEventListener("click", workingJournalEntry);
+  
+  
 
 //===================End of button/ event listener=====================//
+
+// ========= Local Storage ====== //
+
+function updateLocalStorage ()
+{ // global array set to a JSON string we can use.
+  const arrayString = JSON.stringify(journalEntryObjectArr);
+   console.log(`${arrayString}`); // console.log the array for debugging
+   localStorage.setItem("user_entry_data", arrayString); // setting our data inside of the local storage.
+  
+
+}
+
+function getLocalStorage ()
+{
+// set a const variable to retireve the data from the storage.
+const retrieveData = localStorage.getItem("user_entry_data");
+
+// console.log('previous data is ${retrieveData}'); //debugging
+// our string data is converted back to be used in our JS
+const allEntryData = JSON.parse(retrieveData);
+
+if(allEntryData != null)
+{
+  journalEntryObjectArr = allEntryData;
+}
+  else {
+console.log("Ready to be stored");
+  }
+}
+
+
+
 
 
 
